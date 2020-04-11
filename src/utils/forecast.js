@@ -10,9 +10,9 @@ const forecast = (latitude, longitude, callback) => {
             const { code, error } = body;
             callback(`${code} : ${error}`);
         } else {
-            const { temperature, precipProbability, humidity, apparentTemperature } = body.currently;
-            const { summary } = body.daily.data[0];
-            callback(undefined, `${summary} It is currently ${temperature} degrees out with an apparentTemperature of ${apparentTemperature} degrees.  There is a ${precipProbability}% chance of rain and humidity of ${humidity}.`);
+            const { temperature, precipProbability, humidity } = body.currently;
+            const { summary, temperatureHigh, temperatureLow } = body.daily.data[0];
+            callback(undefined, `${summary} It is currently ${temperature} degrees out with a high of ${temperatureHigh} degrees and low of ${temperatureLow} degrees.  There is a ${precipProbability}% chance of rain and humidity of ${humidity}.`);
         }
     });
 }
